@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+.vite/
+*.log
+
+# Claude Code worktree config (local only)
+.claude/
