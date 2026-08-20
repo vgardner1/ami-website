@@ -32,7 +32,7 @@ const SEED: Resource[] = [
   {
     id: "r-1",
     kind: "podcast",
-    title: "Positive Turbulence — the AMI podcast",
+    title: "Positive Turbulence: the AMI podcast",
     author: "Karyn Zuidinga & guests",
     description:
       "Conversations with AMI members on the periphery of innovation, ethics, and change. New episodes monthly.",
@@ -43,7 +43,7 @@ const SEED: Resource[] = [
   {
     id: "r-2",
     kind: "one-pager",
-    title: "Becoming Students Again — Boston 2026",
+    title: "Becoming Students Again: Boston 2026",
     author: "Spencer Karns & Reece Gardner",
     description:
       "The host letter and theme framing for Boston: why we're approaching this AI moment as students, not experts.",
@@ -53,10 +53,10 @@ const SEED: Resource[] = [
   {
     id: "r-3",
     kind: "deck",
-    title: "Positive Turbulence — Smart Cities track",
+    title: "Positive Turbulence: Smart Cities track",
     author: "Nigel Jacob, City of Boston",
     description:
-      "Slides and notes from Nigel's keynote on AI inside the public sector — what 'smart' really means at the neighborhood scale.",
+      "Slides and notes from Nigel's keynote on AI inside the public sector, and what 'smart' really means at the neighborhood scale.",
     thumbnail: "/ami/pdf-070.jpg",
     createdAt: Date.now() - 1000 * 60 * 60 * 70,
   },
@@ -66,7 +66,7 @@ const SEED: Resource[] = [
     title: "Field notes from the Beg-Brag-What-If",
     author: "Camille Newsom",
     description:
-      "What got built after the Beg-Brag-What-If rounds — a write-up of the asks that turned into action.",
+      "What got built after the Beg-Brag-What-If rounds: a write-up of the asks that turned into action.",
     thumbnail: "/ami/DSC_0916-1024x683.jpg",
     createdAt: Date.now() - 1000 * 60 * 60 * 80,
   },
@@ -148,7 +148,7 @@ export default function Resources() {
           The community library.
         </h2>
         <p className="lead">
-          Slide decks, one-pagers, articles, recordings — everything members
+          Slide decks, one-pagers, articles, recordings, everything members
           have shared with the community, indexed and easy to find. Add your
           own to send it to the group.
         </p>
@@ -189,7 +189,7 @@ export default function Resources() {
           <ResourceCard key={r.id} resource={r} onRemove={() => remove(r.id)} />
         ))}
         {filtered.length === 0 && (
-          <p className="resources__empty">Nothing here yet — be the first to share something.</p>
+          <p className="resources__empty">Nothing here yet. Be the first to share something.</p>
         )}
       </div>
 
@@ -344,7 +344,7 @@ function ResourceUploader({
             <>
               <span className="dropzone__icon">⤓</span>
               <strong>Drop a file or click to browse</strong>
-              <span>video, PDF, deck, image — up to 4 MB</span>
+              <span>video, PDF, deck, or image, up to 4 MB</span>
             </>
           )}
         </div>
@@ -367,7 +367,7 @@ function ResourceUploader({
 
         <label className="field">
           <span>Title</span>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Positive Turbulence — Smart Cities track" required />
+          <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Positive Turbulence: Smart Cities track" required />
         </label>
 
         <div className="field-row">

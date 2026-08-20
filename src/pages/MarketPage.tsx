@@ -12,7 +12,7 @@ export default function MarketPage() {
           <p className="pageBanner__lead">
             A live bulletin board for the AMI community. Pin a sticky as
             something you can <strong>offer</strong> or something you{" "}
-            <strong>need</strong>. Click any note to write back — say how you
+            <strong>need</strong>. Click any note to write back and say how you
             can help.
           </p>
         </div>

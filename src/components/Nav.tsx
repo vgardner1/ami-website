@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <header className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
       <Link to="/" className="nav__brand" aria-label="AMI home">
-        <img src="/ami/logo.png" alt="AMI — an innovation learning community" className="nav__logo" />
+        <img src="/ami/logo.png" alt="AMI, an innovation learning community" className="nav__logo" />
       </Link>
 
       <nav className={`nav__links ${open ? "is-open" : ""}`} aria-label="Primary">

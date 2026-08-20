@@ -10,6 +10,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import LeadershipPage from "./pages/LeadershipPage";
 import MembershipPage from "./pages/MembershipPage";
+import GalleryPage from "./pages/GalleryPage";
 
 // Lazy-load the heavy three.js community page so the homepage stays fast
 const CommunityPage = lazy(() => import("./pages/CommunityPage"));
@@ -44,6 +45,8 @@ export default function App() {
             <Route path="/onboarding" element={<><ScrollToTopOnNav /><OnboardingPage /></>} />
             <Route path="/leadership" element={<><ScrollToTopOnNav /><LeadershipPage /></>} />
             <Route path="/membership" element={<><ScrollToTopOnNav /><MembershipPage /></>} />
+            <Route path="/gallery" element={<><ScrollToTopOnNav /><GalleryPage /></>} />
+            <Route path="/gallery/:slug" element={<><ScrollToTopOnNav /><GalleryPage /></>} />
             <Route path="*" element={<><ScrollToTopOnNav /><HomePage /></>} />
           </Routes>
         </main>

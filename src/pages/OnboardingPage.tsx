@@ -23,7 +23,7 @@ const steps = [
     label: "One week out",
     title: "Virtual cohort orientation",
     body:
-      "A live half-day on Zoom: a demo Beg-Brag-What-If, the AMI culture, and the 'ask' — what you want to give and what you want to get.",
+      "A live half-day on Zoom: a demo Beg-Brag-What-If, the AMI culture, and the 'ask': what you want to give and what you want to get.",
     icon: <svg {...ICON}><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M7 21h10" /><path d="M12 17v4" /></svg>,
     accent: "#7b3f9c",
     image: "/ami/stock/lecture.jpg",
@@ -41,9 +41,9 @@ const steps = [
   {
     n: "04",
     label: "The gathering",
-    title: "Three days, one ohana",
+    title: "The AMI Experience",
     body:
-      "Beg-Brag-What-If rounds, hospitality suites, mentor check-ins, the Newcomer Fishbowl, and the Offers & Needs Market — designed for substance and warmth.",
+      "Beg-Brag-What-If rounds, hospitality suites, mentor check-ins, the Newcomer Fishbowl, and the Offers & Needs Market, all designed for substance and warmth.",
     icon: <svg {...ICON}><circle cx="9" cy="8" r="3" /><circle cx="17" cy="9" r="2.5" /><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5" /><path d="M14.5 19c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5" /></svg>,
     accent: "#1f6f8b",
     image: "/ami/DSC_0916-1024x683.jpg",
@@ -53,12 +53,85 @@ const steps = [
     label: "Year-round",
     title: "AMI Playground",
     body:
-      "Daily prompts, a 'now what?' digest from every Beg-Brag-What-If, the Resources library, and the year-round directory — so the connections compound.",
+      "Daily prompts, a 'now what?' digest from every Beg-Brag-What-If, the Resources library, and the year-round directory, so the connections compound.",
     icon: <svg {...ICON}><path d="M12 3v3M12 18v3M5 12H2M22 12h-3M19 5l-2 2M7 17l-2 2M19 19l-2-2M7 7L5 5" /><circle cx="12" cy="12" r="4" /></svg>,
     accent: "#b88a3a",
     image: "/ami/stock/collab.jpg",
   },
 ];
+
+function SignupCard() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [done, setDone] = useState(false);
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name.trim() || !email.includes("@")) return;
+    const signups = JSON.parse(localStorage.getItem("ami-signups") || "[]");
+    signups.push({ name: name.trim(), email: email.trim(), at: new Date().toISOString() });
+    localStorage.setItem("ami-signups", JSON.stringify(signups));
+    setDone(true);
+  }
+
+  if (done) {
+    return (
+      <div className="signup signup--done">
+        <span className="signup__check" aria-hidden>
+          <svg viewBox="0 0 52 52" width="64" height="64">
+            <circle className="signup__checkRing" cx="26" cy="26" r="24" fill="none" strokeWidth="2.4" />
+            <path className="signup__checkMark" fill="none" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" d="M14 27l8 8 16-17" />
+          </svg>
+        </span>
+        <h2>Welcome, {name.split(" ")[0]}.</h2>
+        <p>
+          You are on the list for the next newcomer cohort. Your mentor match
+          and orientation details will land in your inbox soon. We are glad
+          you are here.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="signup">
+      <div className="signup__copy">
+        <span className="kicker">Join the next cohort</span>
+        <h2>Be part of it, right now.</h2>
+        <p>
+          Put your name in and we will start your newcomer journey: a mentor
+          match, the orientation invite, and a seat in Raleigh 2027.
+        </p>
+      </div>
+      <form className="signup__form" onSubmit={submit}>
+        <label>
+          <span>Your name</span>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="First and last name"
+            required
+          />
+        </label>
+        <label>
+          <span>Email</span>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            required
+          />
+        </label>
+        <button className="btn btn--primary signup__btn" type="submit">
+          Start my journey
+        </button>
+        <span className="signup__fine">No spam, no dues surprise. Just a warm hello from a real member.</span>
+      </form>
+    </div>
+  );
+}
 
 export default function OnboardingPage() {
   const [active, setActive] = useState(0);
@@ -125,10 +198,14 @@ export default function OnboardingPage() {
         </div>
       </section>
 
+      <section className="section signupSection">
+        <SignupCard />
+      </section>
+
       <section className="section onboardingCta">
         <div className="onboardingCta__card">
           <h2>Want to take a newcomer through this?</h2>
-          <p>Sign up to mentor — 1 or 2 newcomers, year over year.</p>
+          <p>Sign up to mentor 1 or 2 newcomers, year over year.</p>
           <div className="onboardingCta__buttons">
             <a className="btn btn--primary" href="mailto:hello@aminnovation.org?subject=Mentor%20signup">Mentor a newcomer</a>
             <Link className="btn btn--ghost" to="/membership">Become a member</Link>

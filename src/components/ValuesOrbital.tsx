@@ -15,7 +15,7 @@ const values: Value[] = [
     icon: <svg {...ICON_PROPS}><path d="M12 3l1.9 5.8L20 10l-5.1 3.7L17 20l-5-3.5L7 20l2.1-6.3L4 10l6.1-1.2L12 3z" /></svg> },
   { name: "Curiosity",        body: "We thrive on new ideas, thinking, and ways of being.",
     icon: <svg {...ICON_PROPS}><circle cx="11" cy="11" r="6" /><path d="M21 21l-4.5-4.5" /></svg> },
-  { name: "Reciprocity",      body: "We share freely — and never sell when we meet.",
+  { name: "Reciprocity",      body: "We share freely, and never sell when we meet.",
     icon: <svg {...ICON_PROPS}><path d="M3 8h13l-3-3" /><path d="M21 16H8l3 3" /></svg> },
   { name: "Trust",            body: "We uphold integrity, transparency, and confidentiality.",
     icon: <svg {...ICON_PROPS}><path d="M12 21s-7-4.5-7-11a4 4 0 017-2.6A4 4 0 0119 10c0 6.5-7 11-7 11z" /></svg> },
@@ -97,6 +97,27 @@ export default function ValuesOrbital() {
               aria-hidden
             >
               {v.icon}
+            </span>
+          );
+        })}
+
+        {/* Name + description sit right beside each circle (desktop) */}
+        {values.map((v, i) => {
+          const a = (i / N) * Math.PI * 2 - Math.PI / 2;
+          const cos = Math.cos(a);
+          const sin = Math.sin(a);
+          const LABEL_R = RING_R + NODE_R + 3.5;
+          const xPct = ((CENTER + cos * LABEL_R) / VIEW) * 100;
+          const yPct = ((CENTER + sin * LABEL_R) / VIEW) * 100;
+          const side = cos > 0.35 ? "right" : cos < -0.35 ? "left" : sin < 0 ? "top" : "bottom";
+          return (
+            <span
+              key={`label-${v.name}`}
+              className={`values__nodeLabel values__nodeLabel--${side}`}
+              style={{ left: `${xPct}%`, top: `${yPct}%` }}
+            >
+              <strong>{v.name}</strong>
+              <em>{v.body}</em>
             </span>
           );
         })}

@@ -9,13 +9,13 @@ const ICON = {
 const formats = [
   {
     title: "Positive Turbulence keynotes",
-    body: "Voices from the periphery — speakers who jolt us into thinking differently across disciplines, sectors, and generations.",
+    body: "Voices from the periphery. Speakers who jolt us into thinking differently across disciplines, sectors, and generations.",
     icon: <svg {...ICON}><path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /><path d="M3 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /></svg>,
-    image: "/ami/stock/speaker.jpg",
+    image: "/ami/stock/handshake-sunset.jpg",
   },
   {
     title: "Beg, Brag, What-If",
-    body: "Three asks, three offers, in three minutes. Each member shares what they need, what they've shipped, and the question that won't leave them alone — the room responds in real time with intros, ideas, and immediate help.",
+    body: "Three asks, three offers, in three minutes. Each member shares what they need, what they've shipped, and the question that won't leave them alone. The room responds in real time with intros, ideas, and immediate help.",
     icon: <svg {...ICON}><circle cx="12" cy="12" r="9" /><path d="M9 9h6M8 12h8M9 15h6" /></svg>,
     image: "/ami/stock/sticky-notes.jpg",
   },
@@ -39,17 +39,17 @@ const formats = [
   },
   {
     title: "Outside experiences",
-    body: "Each gathering pairs the work with the place — guided walks, host-city tours, and small-group dinners that turn coffee-line acquaintances into year-round collaborators.",
+    body: "Each gathering pairs the work with the place: guided walks, host-city tours, and small-group dinners that turn coffee-line acquaintances into year-round collaborators.",
     icon: <svg {...ICON}><path d="M12 2v3M12 19v3M5 12H2M22 12h-3M19 5l-2 2M7 17l-2 2M19 19l-2-2M7 7L5 5" /><circle cx="12" cy="12" r="4" /></svg>,
     image: "/ami/stock/walking.jpg",
   },
 ];
 
-const past = [
-  { city: "Boston, MA",         year: 2026, theme: "Becoming Students Again — AI",        image: "/ami/boston-ai-hero.jpg" },
+const past: { city: string; year: number; theme: string; image: string; to?: string }[] = [
+  { city: "Boston, MA",         year: 2026, theme: "Becoming Students Again: AI",         image: "/ami/boston-ai-hero.jpg",                to: "/gallery/boston" },
   { city: "Las Vegas, NV",      year: 2024, theme: "Innovation in the Desert",            image: "/ami/stock/vegas.jpg" },
-  { city: "Greensboro, NC",     year: 2023, theme: "Manufacturing's Next Chapter",        image: "/ami/Greensboro.jpg" },
-  { city: "Seattle, WA",        year: 2018, theme: "Building Cities of Innovation",       image: "/ami/DebraLucenti-SeattleGroupPhoto.jpg" },
+  { city: "Greensboro, NC",     year: 2023, theme: "Manufacturing's Next Chapter",        image: "/ami/Greensboro.jpg",                    to: "/gallery/greensboro" },
+  { city: "Seattle, WA",        year: 2018, theme: "Building Cities of Innovation",       image: "/ami/DebraLucenti-SeattleGroupPhoto.jpg", to: "/gallery/seattle" },
   { city: "Colorado Springs",   year: 2016, theme: "Center for Creative Leadership",      image: "/ami/2016-04-06-18.30.34.jpg" },
 ];
 
@@ -58,15 +58,15 @@ export default function MeetingsPage() {
     <>
       {/* Hero banner */}
       <section className="pageBanner">
-        <img src="/ami/stock/discussion.jpg" alt="" />
+        <img src="/ami/stock/sunset-friends.jpg" alt="" />
         <div className="pageBanner__scrim" />
         <div className="pageBanner__inner">
           <span className="kicker pageBanner__kicker">Meetings</span>
-          <h1 className="pageBanner__title">Once a year. In person.</h1>
+          <h1 className="pageBanner__title">Beyond the surface level.</h1>
           <p className="pageBanner__lead">
-            AMI meets once a year, somewhere new, for three days that change the
-            calendar. Each gathering is a curated mix of substance and warmth — a
-            format refined over four decades.
+            We intentionally frame our conversations to break through surface
+            level. The magic of AMI is genuine relationship building, and every
+            gathering is designed for exactly that.
           </p>
         </div>
       </section>
@@ -74,11 +74,11 @@ export default function MeetingsPage() {
       <section className="section formats">
         <div className="formats__head">
           <span className="kicker">What happens at a gathering</span>
-          <h2>Six formats. One container.</h2>
+          <h2>Designed for real connection.</h2>
           <p className="lead">
-            The format stays the same so the conversation can go deep. The
-            speakers, themes, and host city change every year to keep the
-            periphery alive.
+            Once a year, somewhere new, for three days that change the
+            calendar. The rituals below have been refined over four decades to
+            turn strangers into lifelong collaborators.
           </p>
         </div>
         <ul className="formats__grid">
@@ -108,19 +108,28 @@ export default function MeetingsPage() {
           </p>
         </div>
         <ul className="pastGrid">
-          {past.map((p) => (
-            <li key={`${p.city}-${p.year}`} className="pastCard">
-              <div className="pastCard__img">
-                <img src={p.image} alt={p.city} loading="lazy" />
-                <div className="pastCard__scrim" />
-                <span className="pastCard__year">{p.year}</span>
-              </div>
-              <div className="pastCard__body">
-                <h3>{p.city}</h3>
-                <p>{p.theme}</p>
-              </div>
-            </li>
-          ))}
+          {past.map((p) => {
+            const inner = (
+              <>
+                <div className="pastCard__img">
+                  <img src={p.image} alt={p.city} loading="lazy" />
+                  <div className="pastCard__scrim" />
+                  <span className="pastCard__year">{p.year}</span>
+                </div>
+                <div className="pastCard__body">
+                  <h3>{p.city}</h3>
+                  <p>{p.theme}{p.to && <span className="pastCard__more"> · View gallery →</span>}</p>
+                </div>
+              </>
+            );
+            return (
+              <li key={`${p.city}-${p.year}`}>
+                {p.to
+                  ? <Link to={p.to} className="pastCard">{inner}</Link>
+                  : <div className="pastCard">{inner}</div>}
+              </li>
+            );
+          })}
         </ul>
       </section>
 

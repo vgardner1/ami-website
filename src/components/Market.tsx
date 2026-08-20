@@ -158,7 +158,7 @@ export default function Market() {
                 <StickyCard key={n.id} note={n} onClick={() => setActiveId(n.id)} />
               ))}
               {visible.length === 0 && (
-                <div className="bulletin__empty">Nothing pinned here yet — be the first to add a note.</div>
+                <div className="bulletin__empty">Nothing pinned here yet. Be the first to add a note.</div>
               )}
             </div>
           </div>
@@ -249,7 +249,7 @@ function Composer({
             value={body}
             onChange={(e) => setBody(e.target.value)}
             rows={4}
-            placeholder={kind === "need" ? "e.g. Looking for an AI ethicist to co-host a session in Raleigh." : "e.g. Happy to mentor 2 newcomers — a 30-min pre-event call."}
+            placeholder={kind === "need" ? "e.g. Looking for an AI ethicist to co-host a session in Raleigh." : "e.g. Happy to mentor 2 newcomers, starting with a 30-min pre-event call."}
             required
           />
         </label>
@@ -326,7 +326,7 @@ function NoteDetail({
 
         <section className="thread">
           <h4>
-            {note.replies.length === 0 ? "No replies yet — start the thread." : `${note.replies.length} ${note.replies.length === 1 ? "reply" : "replies"}`}
+            {note.replies.length === 0 ? "No replies yet. Start the thread." : `${note.replies.length} ${note.replies.length === 1 ? "reply" : "replies"}`}
           </h4>
           <ul>
             {note.replies.map((r) => (

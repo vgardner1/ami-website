@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p className="footer__sign">Made with care for the AMI ohana — Aloha.</p>
+      <p className="footer__sign">Made with care for the AMI community.</p>
     </footer>
   );
 }

@@ -10,14 +10,36 @@ const collage = [
 export default function AboutPage() {
   return (
     <>
-      <section className="pageBanner">
+      <section className="pageBanner pageBanner--moonshot">
         <img src="/ami/Joe-Gammal-fullsizeoutput_834b.jpg" alt="" />
         <div className="pageBanner__scrim" />
+
+        {/* Moonshot scene: stars, moon, and a rising trajectory */}
+        <div className="moonshot" aria-hidden>
+          <div className="moonshot__stars moonshot__stars--1" />
+          <div className="moonshot__stars moonshot__stars--2" />
+          <span className="moonshot__moon" />
+          <svg className="moonshot__sky" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax slice">
+            <path
+              className="moonshot__trail"
+              d="M -40 430 C 220 380, 430 300, 620 190 S 880 60, 940 38"
+              fill="none"
+            />
+            <circle className="moonshot__ship" r="5" />
+          </svg>
+        </div>
+
         <div className="pageBanner__inner">
           <span className="kicker pageBanner__kicker">About AMI</span>
-          <h1 className="pageBanner__title">A place where moonshots are born.</h1>
+          <h1 className="pageBanner__title pageBanner__title--moonshot">
+            {"A place where moonshots are born.".split(" ").map((w, i) => (
+              <span key={i} className="moonshot__word" style={{ animationDelay: `${0.15 + i * 0.12}s` }}>
+                {w}&nbsp;
+              </span>
+            ))}
+          </h1>
           <p className="pageBanner__lead">
-            AMI — the Association for Managers of Innovation — is a 501(c)(3)
+            AMI, the Association for Managers of Innovation, is a 501(c)(3)
             nonprofit founded in 1982 by Stan Gryskiewicz. Members tackle the
             world's most complex and ambiguous challenges, from corporate
             growth to economic development and the ethics of AI.
@@ -33,7 +55,7 @@ export default function AboutPage() {
             <p>
               AMI Innovators are diverse in profession and perspective. We
               relish learning from one another's successes and failures, and
-              we challenge ourselves to speak our truths — building creative
+              we challenge ourselves to speak our truths, building creative
               confidence and the courage to lead transformational change.
             </p>
             <p>
@@ -57,7 +79,7 @@ export default function AboutPage() {
           <blockquote>
             <p>
               “In turbulent times, rather than getting stuck in the noise,
-              there's something to be found at the periphery — a generative
+              there's something to be found at the periphery: a generative
               path forward that only becomes visible when we look up, look
               around, and look at it together, in community.”
             </p>
